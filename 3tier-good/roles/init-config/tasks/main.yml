@@ -1,0 +1,9 @@
+---
+# tasks file for init-config 
+
+- name: enable all repos
+  copy:
+    src: open_three-tier-app.repo
+    dest: /etc/yum.repos.d/open_three-tier-app.repo
+    mode: 0644
+...

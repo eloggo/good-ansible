@@ -1,0 +1,39 @@
+---
+- name: init config
+  hosts: all
+  gather_facts: false
+  become: true
+  roles:
+    - init-config
+  post_tasks:
+    - debug: msg="init config finish!!!"
+
+- name: haproxy install 
+  hosts: frontends
+  gather_facts: false
+  become: true
+  roles:
+    - haproxy
+  post_tasks:
+    - debug: msg="haproxy install finish!!!"
+
+- name: tomcat install 
+  hosts: apps
+  gather_facts: false
+  become: true
+  roles:
+    - tomcat
+    - httpd
+  post_tasks:
+    - debug: msg="tomcat install finish!!!"
+
+- name: pgsql install 
+  hosts: appdbs
+  gather_facts: false
+  become: true
+  roles:
+    - pgsql
+  post_tasks:
+    - debug: msg="pgsql install finish!!!"
+
+...

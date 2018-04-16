@@ -1,0 +1,16 @@
+---
+# tasks file for pgsql
+- name: install pgsql package
+  yum: 
+    name: postgresql-server
+    state: latest
+- name: initilize postgres
+  command: postgresql-setup initdb
+  ignore_errors: True
+- name: start and enable pgsql
+  service:
+    name: postgresql
+    enabled: yes
+    state: started
+
+...
